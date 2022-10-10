@@ -1,0 +1,48 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "Amrita One",
+  "version": "0.4.2",
+  "description": "Your all-in-one tab/tab group manager for Chrome.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiBvxI7wt4EXSm4QxtyIwNE3GTK3BSFwmhJBlnhb1U0UNXHqycSCI9vv/So8CIFIFAGA9YMAPQhdNWo56i/45Mn2gsIZFlau4IMLwMvTbbqbdU67EPZkhr2KXNaYdXG+413euKOthpHAG/ZWFhkFhnzGO/kOuKOOcwsd7iLy0gy8s6gYop7KJYaQ94CUd7u+BgVbkX8RdwpLBjnSLXBNf3cLOdE+4JA8D/88/NEeR4EKVly2VpI1tjhEziD6z+fjGwGeu9xBZMfhW28JFne69Ugey1qaZmNBSGeYqtzDIj3q2SD4ny2ZFrVtsgq351UawrOA72KwUCgZaA+REgInCvQIDAQAB",
+  "action": {
+    "default_title": "One Tab Group - Tab/Tab Group Manager"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "content_worker": "assets/popup.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.onetab.group/oauth/redirect*"
+      ],
+      "js": [
+        "./content/oauth-github.global.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "16": "./assets/icon-16.png",
+    "32": "./assets/icon-32.png",
+    "48": "./assets/icon-48.png",
+    "128": "./assets/icon-128.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "tabGroups",
+    "contextMenus",
+    "identity",
+    "identity.email"
+  ],
+  "host_permissions": [
+    "https://github.com/login/oauth/access_token"
+  ],
+  "optional_permissions": [
+    "*://*/*"
+  ],
+  "content_security_policy": {}
+}
